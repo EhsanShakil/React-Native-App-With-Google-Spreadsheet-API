@@ -66,9 +66,9 @@ We need to change this url in order to create an API
 
 https://sheets.googleapis.com/v4/spreadsheets/{Sheet-ID}/values/{Shhet-Name}?valueRenderOption=FORMATTED_VALUE&key={API-Key}
 
-So the above url is the API url just we need to put sheet ID(it is the last hash key in the spread sheet url '1NaJ7GjCME0PaYCAbt3ct10Cl6bSUOlz6XpMS7ASdUQM' this one), sheet name(remember that sheet name is the name which is shown on the below side by default it is "Sheet1") and API Key which we created.
+So the above url is the API url just we need to put Sheet-ID(it is the last hash key in the spread sheet url '1NaJ7GjCME0PaYCAbt3ct10Cl6bSUOlz6XpMS7ASdUQM' this one), Sheet-Name(remember that sheet name is the name which is shown on the below side by default it is "Sheet1") and API-Key which we created.
 
-Now my url is this
+Now my API is this
 
 https://sheets.googleapis.com/v4/spreadsheets/1NaJ7GjCME0PaYCAbt3ct10Cl6bSUOlz6XpMS7ASdUQM/values/sheet1?valueRenderOption=FORMATTED_VALUE&key=AIzaSyAMoO3NijVmRDKFdtkfUjIDBWgw831k0PQ
 
