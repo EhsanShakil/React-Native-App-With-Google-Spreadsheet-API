@@ -168,18 +168,138 @@ export default function App() {
     <Header />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 ```
 Our Header look like this.
 
 ![](pictures/header.jpeg)
 
 Now we need to fetch our API which we created before in the FetchData Component.
+
+```
+const DataAPI = async () => {
+  try {
+    let data = await fetch(
+      "https://sheets.googleapis.com/v4/spreadsheets/1NaJ7GjCME0PaYCAbt3ct10Cl6bSUOlz6XpMS7ASdUQM/values/sheet1?valueRenderOption=FORMATTED_VALUE&key=AIzaSyAMoO3NijVmRDKFdtkfUjIDBWgw831k0PQ"
+    );
+    let { values } = await data.json();
+    let [, ...Data] = values.map((data) => data);
+    return Data;
+  } catch {
+    console.log("Error");
+  }
+};
+export default DataAPI;
+```
+So here is our FetchData Component and what I did in that just fetch our API and after fetching I just destructure it because its inside an object value and after destructuring I just again destructure it but this time I am destructuring an array and leaving the 0 index value because I don't need it it's all about headings and now mapping all the values in it and returning the Data because I need to map again because the API is an array of array so now we need to create Data Component and than we just need to call the data and render it into the UI.
+
+```
+import React, { useEffect, useState } from "react";
+import { StyleSheet, Text, ScrollView, ActivityIndicator } from "react-native";
+import { Card } from "react-native-paper";
+import { Ionicons } from "@expo/vector-icons";
+import FetchData from "./FetchData";
+
+export default function Data() {
+  const [value, setValue] = useState();
+  useEffect(() => {
+    let data = async () => {
+      setValue(await FetchData());
+    };
+    data();
+  }, []);
+  if (!value) {
+    return (
+      <ActivityIndicator
+        size="large"
+        animating={true}
+        color="rgba(137,232,207,100)"
+      />
+    );
+  }
+  return (
+    <ScrollView>
+      {value.map((files, index) => (
+        <Card key={index} style={styles.container}>
+          <Card.Title
+            title={!files[1] ? "Not Provided" : files[1]}
+            left={() => <Ionicons name="md-person" size={50} color="#fff" />}
+          />
+          <Card.Content style={styles.content}>
+            <Text style={styles.title}>S.No:</Text>
+            <Text style={styles.paragraph}>
+              {!files[0] ? "Not Given" : files[0]}
+            </Text>
+          </Card.Content>
+          <Card.Content style={styles.content}>
+            <Text style={styles.title}>Class:</Text>
+            <Text style={styles.paragraph}>
+              {!files[3] ? "Not Provided" : files[2]}
+            </Text>
+          </Card.Content>
+          <Card.Content style={styles.content}>
+            <Text style={styles.title}>Subject:</Text>
+            <Text style={styles.paragraph}>
+              {!files[4] ? "Not Provided" : files[3]}
+            </Text>
+          </Card.Content>
+          <Card.Content style={styles.content}>
+            <Text style={styles.title}>Grade:</Text>
+            <Text style={styles.paragraph}>
+              {!files[2] ? "Not Provided" : files[4]}
+            </Text>
+          </Card.Content>
+        </Card>
+      ))}
+    </ScrollView>
+  );
+}
+const styles = StyleSheet.create({
+  container: {
+    margin: 20,
+    borderWidth: 4,
+    borderRadius: 20,
+    backgroundColor: "rgba(137,232,207,100)",
+    borderColor: "rgba(137,232,207,100)",
+  },
+  content: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    marginBottom: 10,
+    flexWrap: "wrap",
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginRight: 15,
+  },
+  paragraph: {
+    fontSize: 18,
+  },
+});
+```
+
+Now it's our final component and what I did in this component is just call our API and use React Native Paper to create Card. I use useState to create an state where I can store the values which we are getting from API and after I call useEffect because we need the data wheneven the UI first render and I also use ActivityIndicator when even the data is not coming from API so this will show a loader because of the if statement and after I just map over the state in which we are getting the data because we are getting an array and then I just put that data in Card which I imported from react native paper and I did some styling and that's it.
+
+Now we just need to call our Data Component into our App.js file
+
+```
+import React from "react";
+import { StyleSheet } from "react-native";
+import Data from "./App/Data";
+import Header from "./App/Header";
+
+export default function App() {
+  return (
+    <>
+      <Header />
+      <Data />
+    </>
+  );
+}
+```
+Now our App.js file look like this.
+
+Here you can see the App.
+
+![](pictures/app.jpeg)
