@@ -3,7 +3,11 @@ import { StyleSheet } from "react-native";
 import Header from "./App/Header";
 
 export default function App() {
-  return <Header />;
+  return (
+    <>
+      <Header />
+    </>
+  );
 }
 
 const styles = StyleSheet.create({
