@@ -7,6 +7,7 @@ Creating an application using Google Spreadsheet API as a backend.
 - HTML And CSS.
 - JavaScript and EcmaScript6.
 - ReactNative (We are using Expo in this application).
+- ReactNativePaper (This is a react native library)
 
 ## Lets Get Started
 
@@ -76,3 +77,109 @@ Here you can see we are getting data in the form of JSON object and successfully
 
 ![](pictures/API.png)
 
+### Now we are moving towaras creating a react native app
+
+First of all we are using expo so we must assure we have already expo installed if you don't have you can install it through this.
+
+Command: `npm install --global expo-cli`
+
+Now we need to create an app through expo.
+
+Command: `expo init "app name"`
+
+After creating an app I just created a folder App and nothing and in that folder I am going to create all the components.
+
+![](pictures/folder.png)
+
+Now we need to create 3 compoents Header, FetchData and the last Data where we are going to show data which are fetching.
+
+Now inside an App folder I just created these components.
+
+![](pictures/app-folder.png)
+
+Now we need to install react native paper this is a react native library for material design.
+
+Command: `npm install react-native-paper`
+
+Now after installing this we need to create Header Component.
+
+```
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { StyleSheet } from "react-native";
+import { Appbar } from "react-native-paper";
+
+export default function Header() {
+  return (
+    <Appbar.Header style={styles.header}>
+      <Appbar.Content style={styles.container} title="Google Sheet API" />
+      <StatusBar />
+    </Appbar.Header>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  header: {
+    backgroundColor: "rgba(137,232,207,100)",
+  },
+});
+```
+
+Well I import StatusBar first what it does it always change your mobile header with respect to the color of our app header. AppBar will allow us to create header without putting much efforts. AppBar.Header is a header you can give any color which you want and in AppBar.Content there is an attribute title in which you can provide a header title.
+
+in order to see the out we need to call this component in our App.js file which is outside the App folder and it's the root file also.
+```
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+
+export default function App() {
+  return (
+    <View style={styles.container}>
+      <Text>Open up App.js to start working on your app!</Text>
+      <StatusBar style="auto" />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+```
+we need to remove all the code inside App function and just need to to call Header Component.
+
+```
+import React from "react";
+import { StyleSheet } from "react-native";
+import Header from "./App/Header";
+
+export default function App() {
+  return (
+    <Header />
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+```
+Our Header look like this.
+
+![](pictures/header.jpeg)
+
+Now we need to fetch our API which we created before in the FetchData Component.
