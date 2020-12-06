@@ -60,7 +60,7 @@ export default function Data() {
 }
 const styles = StyleSheet.create({
   container: {
-    margin: 20,
+    margin: 10,
     borderWidth: 4,
     borderRadius: 20,
     backgroundColor: "rgba(137,232,207,100)",
