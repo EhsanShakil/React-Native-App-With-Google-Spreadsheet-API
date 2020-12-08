@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "react-native-with-google-spreadsheet-api",
+    "name": "Google SpreadSheet API",
     "slug": "react-native-with-google-spreadsheet-api",
+    "description": "How to create google spreadsheet API and build a react-native application.",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,9 +14,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -23,7 +22,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.ehsanshakil.reactnativewithgooglespreadsheetapi"
     },
     "web": {
       "favicon": "./assets/favicon.png"
