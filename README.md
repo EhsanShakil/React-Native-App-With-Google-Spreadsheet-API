@@ -133,6 +133,7 @@ const styles = StyleSheet.create({
 Well I import StatusBar first what it does it always change your mobile header with respect to the color of our app header. AppBar will allow us to create header without putting much efforts. AppBar.Header is a header you can give any color which you want and in AppBar.Content there is an attribute title in which you can provide a header title.
 
 in order to see the out we need to call this component in our App.js file which is outside the App folder and it's the root file also.
+
 ```
 import { StatusBar } from "expo-status-bar";
 import React from "react";
@@ -156,6 +157,7 @@ const styles = StyleSheet.create({
   },
 });
 ```
+
 we need to remove all the code inside App function and just need to to call Header Component.
 
 ```
@@ -169,6 +171,7 @@ export default function App() {
   );
 }
 ```
+
 Our Header look like this.
 
 ![](pictures/header.jpeg)
@@ -190,6 +193,7 @@ const DataAPI = async () => {
 };
 export default DataAPI;
 ```
+
 So here is our FetchData Component and what I did in that just fetch our API and after fetching I just destructure it because its inside an object value and after destructuring I just again destructure it but this time I am destructuring an array and leaving the 0 index value because I don't need it it's all about headings and now mapping all the values in it and returning the Data because I need to map again because the API is an array of array so now we need to create Data Component and than we just need to call the data and render it into the UI.
 
 ```
@@ -298,8 +302,29 @@ export default function App() {
   );
 }
 ```
+
 Now our App.js file look like this.
 
 Here you can see the App.
 
 ![](pictures/app.jpeg)
+
+Now we need to create an APK file.
+
+So for that we just need to first create an expo account.
+
+https://expo.io/
+
+Go to this website and create an account and login.
+
+After Successfully creating your account you just need to type this command in your project terminal.
+
+`expo build:android`
+
+It will ask to select some answer you just need to follow that and it will take some type to create your APK file.
+
+Now all done. :)
+
+Repository Link: https://github.com/EhsanShakil/React-Native-App-With-Google-Spreadsheet-API/
+
+APK URL: https://expo.io/@ehsanshakil/projects/react-native-with-google-spreadsheet-api
